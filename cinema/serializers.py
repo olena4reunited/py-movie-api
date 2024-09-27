@@ -14,7 +14,17 @@ class MovieSerializer(serializers.Serializer):
 
     def update(self, instance, validated_data):
         instance.title = validated_data.get("title", instance.title)
-        instance.description = validated_data.get("description", instance.description)
-        instance.duration = validated_data.get("duration", instance.duration)
+        instance.description = validated_data.get(
+            "description",
+            instance.description
+        )
+        instance.duration = validated_data.get(
+            "duration",
+            instance.duration
+        )
         instance.save()
         return instance
+    
+    class Meta:
+        model = Movie
+        fields = ["id", "title", "description", "duration"]
